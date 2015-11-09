@@ -1,9 +1,14 @@
-var sum=0;
-for (var i=0; i < process.argv.length; i++)
+var fs = require('fs');
+
+//read file into buffer
+var fileContentsBuffer = fs.readFileSync(process.argv[2]);
+
+//convert to a string
+var str = fileContentsBuffer.toString();
+
+//count newlines using a regex
+var matches = str.match(/\n/g);
+if (matches != null)
 {
-	if (i >= 2)
-	{
-		sum += Number(process.argv[i]);
-	}
+	console.log(matches.length);
 }
-console.log(sum);
